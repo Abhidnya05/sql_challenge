@@ -34,3 +34,58 @@ Title
 -
 title_id VARCHAR FK >- Employees.emp_title_id
 title VARCHAR
+
+
+CREATE TABLE Departments (
+  dept_no VARCHAR(30) PRIMARY KEY,
+  dept_name VARCHAR(30) NOT NULL
+);
+
+SELECT * FROM Departments
+
+CREATE TABLE Dept_emp (
+  emp_no INTEGER PRIMARY KEY,
+  dept_no VARCHAR(30) NOT NULL,
+  FOREIGN KEY (dept_no) REFERENCES Departments(dept_no)
+);
+
+SELECT * FROM Dept_emp
+
+CREATE TABLE Dept_manager (
+  dept_no VARCHAR NOT NULL,
+  emp_no INTEGER,
+  FOREIGN KEY (dept_no) REFERENCES Departments(dept_no),
+  FOREIGN KEY (emp_no) REFERENCES Dept_emp(emp_no)
+);
+
+SELECT * FROM Dept_manager
+
+CREATE TABLE Employees (
+  emp_no INTEGER,
+  emp_title_id VARCHAR PRIMARY KEY,
+  birthdate DATE,
+  first_name VARCHAR,
+  last_name VARCHAR,
+  sex VARCHAR,
+  hire_date DATE,
+  FOREIGN KEY (emp_no) REFERENCES Dept_emp(emp_no)
+);
+
+SELECT * FROM Employees
+
+
+CREATE TABLE Salaries (
+  emp_no INTEGER,
+  salary INTEGER,
+  FOREIGN KEY (emp_no) REFERENCES Dept_emp(emp_no)
+);
+
+SELECT * FROM Salaries
+
+CREATE TABLE Title (
+  title_ID VARCHAR,
+  title VARCHAR,
+  FOREIGN KEY (title_ID) REFERENCES Employees(emp_title_id)
+);
+
+SELECT * FROM Title
