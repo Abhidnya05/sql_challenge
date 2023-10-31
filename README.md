@@ -90,3 +90,19 @@ CREATE TABLE Title (
 );
 
 SELECT * FROM Title
+
+CREATE TABLE Dept1 (
+  
+  emp_no INTEGER,
+  emp_title_id VARCHAR,
+  birthdate DATE,
+  first_name VARCHAR,
+  last_name VARCHAR,
+  sex VARCHAR,
+  hire_date DATE--,
+  ---emp_title_id VARCHAR(30) NOT NULL
+  --- FOREIGN KEY (dept_no) REFERENCES Departments(dept_no),
+  --- FOREIGN KEY (emp_no) REFERENCES Dept_emp(emp_no)
+
+);
+SELECT * FROM Dept1
