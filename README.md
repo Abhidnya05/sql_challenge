@@ -44,11 +44,12 @@ CREATE TABLE Departments (
 SELECT * FROM Departments
 
 CREATE TABLE Dept_emp (
-  emp_no INTEGER PRIMARY KEY,
-  dept_no VARCHAR(30) NOT NULL,
-  FOREIGN KEY (dept_no) REFERENCES Departments(dept_no)
+  
+  emp_no INTEGER,
+  dept_no VARCHAR NOT NULL
+  --- FOREIGN KEY (dept_no) REFERENCES Departments(dept_no),
+  --- FOREIGN KEY (emp_no) REFERENCES Dept_emp(emp_no)
 );
-
 SELECT * FROM Dept_emp
 
 CREATE TABLE Dept_manager (
