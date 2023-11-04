@@ -35,7 +35,6 @@ Title
 title_id VARCHAR FK >- Employees.emp_title_id
 title VARCHAR
 
-
 CREATE TABLE Departments (
   dept_no VARCHAR(30) PRIMARY KEY,
   dept_name VARCHAR(30) NOT NULL
@@ -89,6 +88,11 @@ FROM Employees
 LEFT JOIN Salaries
 ON Salaries.emp_no = Employees.emp_no
 
+--- Query 2
+SELECT Employees.first_name, Employees.last_name, Employees.hire_date
+FROM Employees
+WHERE hire_date >= '1986-01-01' AND hire_date <=  '1986-12-31'
+
 --- Query 3
 SELECT Dept_manager.dept_no, Dept_manager.emp_no, Departments.dept_name, Employees.first_name, Employees.last_name
 FROM Dept_manager
@@ -135,3 +139,9 @@ WHERE Departments.dept_name = 'Sales' OR Departments.dept_name = 'Development';
 
 SELECT development.emp_no, development.first_name, development.last_name, development.dept_name
 FROM development;
+
+--- Query 8
+SELECT COUNT(Employees.last_name) as "number", Employees.last_name
+FROM Employees
+GROUP BY last_name
+ORDER BY "number" DESC;
