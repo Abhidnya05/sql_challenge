@@ -1,39 +1,43 @@
 # sql_challenge
 
+ERD script
+
 Departments
 -
 dept_no VARCHAR PK
 dept_name VARCHAR
 
-Dept_emp
+Title
 -
-emp_no INTEGER PK
-dept_no VARCHAR FK >- Departments.dept_no
-
-Dept_manager
--
-dept_no VARCHAR FK >- Departments.dept_no
-emp_no INTEGER FK >- Dept_emp.emp_no
+title_id VARCHAR PK
+title VARCHAR
 
 Employees
 -
-emp_no INTEGER FK >- Dept_emp.emp_no
-emp_title_id VARCHAR PK
+emp_no INTEGER PK 
+emp_title_id VARCHAR FK >- Title.title_id
 birth_date DATE
 first_name VARCAHR
 last_name VARCHAR
 sex VARCHAR
 hire_date  DATE
 
+Dept_emp
+-
+emp_no INTEGER FK >- Employees.emp_no
+dept_no VARCHAR FK >- Departments.dept_no
+
+Dept_manager
+-
+dept_no VARCHAR FK >- Departments.dept_no
+emp_no INTEGER FK >- Employees.emp_no
+
 Salaries
 -
-emp_no INTEGER FK >- Dept_emp.emp_no
+emp_no INTEGER FK >- Employees.emp_no
 salary INTEGER
 
-Title
--
-title_id VARCHAR FK >- Employees.emp_title_id
-title VARCHAR
+Table Creation
 
 CREATE TABLE Departments (
   dept_no VARCHAR(30) PRIMARY KEY,
@@ -81,6 +85,8 @@ CREATE TABLE Salaries (
   FOREIGN KEY (emp_no) REFERENCES Employees(emp_no)
 );
 SELECT * FROM Salaries
+
+Queries
 
 --- Query 1
 SELECT Employees.emp_no, Employees.first_name, Employees.last_name, Employees.sex, Salaries.salary
